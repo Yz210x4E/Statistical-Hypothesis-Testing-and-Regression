@@ -45,6 +45,12 @@ try:
     - **Xhesika Gjikola**
     """)
 
+    st.sidebar.header("Under Supervision of")
+    st.sidebar.markdown("**Mohammad Ziyad Kagdi**")
+    
+    st.sidebar.header("Deployed at")
+    st.sidebar.markdown("**Epoka University**")
+
     # Create three columns for correlation matrices
     col1, col2, col3 = st.columns(3)
 
