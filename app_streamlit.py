@@ -7,7 +7,7 @@ import plotly.express as px
 import numpy as np
 
 # Set page configuration
-st.set_page_config(page_title="Data Analysis Dashboard", layout="wide")
+st.set_page_config(page_title="Statistical Hypothesis Testing & Regression Analysis", layout="wide")
 
 # Configure matplotlib for better visualization
 sns.set_style("whitegrid")  # Use Seaborn's styling
