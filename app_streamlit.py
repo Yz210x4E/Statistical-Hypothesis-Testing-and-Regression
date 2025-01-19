@@ -7,7 +7,12 @@ import numpy as np
 import time
 
 # Set page configuration
-st.set_page_config(page_title="Statistical Hypothesis Testing & Regression Analysis", layout="wide")
+st.set_page_config(
+    page_title="Statistical Hypothesis Testing & Regression Analysis",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 # Configure matplotlib for better visualization
 sns.set_style("whitegrid")  # Use Seaborn's styling
@@ -17,76 +22,57 @@ def clear_figure():
     plt.clf()
     plt.close('all')
 
-# Custom CSS for the creative loading screen
-loading_css = """
+# Custom CSS for Epoka's theme
+epoka_theme_css = """
 <style>
-/* Loading screen container */
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9999;
+/* Main background and text colors */
+body {
+    background-color: #ffffff;  /* White background */
+    color: #003366;  /* Dark blue text */
 }
 
-/* Loading text */
-.loading-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #0073e6;  /* Epoka blue */
-    margin-bottom: 20px;
-}
-
-/* Progress bar container */
-.progress-bar-container {
-    width: 50%;
-    height: 20px;
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* Progress bar */
-.progress-bar {
-    height: 100%;
-    width: 0;
+/* Sidebar styling */
+.sidebar .sidebar-content {
     background-color: #0073e6;  /* Epoka blue */
-    animation: progress 2s linear infinite;
+    color: white;
 }
 
-@keyframes progress {
-    0% { width: 0; }
-    50% { width: 50%; }
-    100% { width: 100%; }
+/* Header styling */
+h1, h2, h3 {
+    color: #0073e6;  /* Epoka blue */
+}
+
+/* Button styling */
+.stButton>button {
+    background-color: #0073e6;  /* Epoka blue */
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.stButton>button:hover {
+    background-color: #005bb5;  /* Darker blue on hover */
 }
 </style>
 """
 
-# HTML for the loading screen
-loading_html = """
-<div class="loading-screen">
-    <div class="loading-text">Loading Data...</div>
-    <div class="progress-bar-container">
-        <div class="progress-bar"></div>
-    </div>
-</div>
-"""
+# Inject custom CSS
+st.markdown(epoka_theme_css, unsafe_allow_html=True)
 
-# Inject custom CSS and HTML
-st.markdown(loading_css, unsafe_allow_html=True)
+# Lottie animation loading screen
+loading_html = """
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+<dotlottie-player src="https://lottie.host/8640de44-149e-4206-bd00-0961be00f934/N4TFbcZI8T.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+"""
 
 # Create a placeholder for the loading screen
 loading_placeholder = st.empty()
 loading_placeholder.markdown(loading_html, unsafe_allow_html=True)
 
 # Simulate a loading process
-time.sleep(3)  # Simulate a 3-second loading time
+time.sleep(5)  # Simulate a 5-second loading time
 
 # Remove the loading screen after the process is complete
 loading_placeholder.empty()
