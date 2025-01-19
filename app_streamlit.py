@@ -6,6 +6,20 @@ import statsmodels.api as sm
 import plotly.express as px
 import numpy as np
 
+st.markdown("""
+    <style>
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+    /* Style for headers */
+    h2 {
+        padding-top: 60px;
+        margin-top: -60px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 # Set page configuration
 st.set_page_config(page_title="Statistical Hypothesis Testing & Regression Analysis", layout="wide")
 
@@ -48,8 +62,9 @@ try:
     st.sidebar.header("Under Supervision of")
     st.sidebar.markdown("**Mohammad Ziyad Kagdi**")
     
-    st.sidebar.header("Deployed at")
-    st.sidebar.markdown("**Epoka University**")
+   st.sidebar.header("Deployed at")
+   st.sidebar.markdown("[**Epoka University**](https://www.epoka.edu.al/)")  # Clickable link
+   st.sidebar.image("https://www.epoka.edu.al/wp-content/uploads/2022/09/Epoka-University-Logo.png", width=150)  # Add university logo
 
     # Create three columns for correlation matrices
     col1, col2, col3 = st.columns(3)
