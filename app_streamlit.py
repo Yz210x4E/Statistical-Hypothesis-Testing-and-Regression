@@ -6,19 +6,6 @@ import statsmodels.api as sm
 import plotly.express as px
 import numpy as np
 
-st.markdown("""
-    <style>
-    /* Smooth scrolling */
-    html {
-        scroll-behavior: smooth;
-    }
-    /* Style for headers */
-    h2 {
-        padding-top: 60px;
-        margin-top: -60px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
 
 # Set page configuration
 st.set_page_config(page_title="Statistical Hypothesis Testing & Regression Analysis", layout="wide")
