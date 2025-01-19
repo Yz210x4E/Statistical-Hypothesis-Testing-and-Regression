@@ -3,9 +3,8 @@ import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-import plotly.express as px
 import numpy as np
-
+import time
 
 # Set page configuration
 st.set_page_config(page_title="Statistical Hypothesis Testing & Regression Analysis", layout="wide")
@@ -18,6 +17,61 @@ def clear_figure():
     plt.clf()
     plt.close('all')
 
+# Custom CSS for the loading screen
+loading_css = """
+<style>
+/* Loading screen container */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #0073e6;  /* Epoka blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+"""
+
+# HTML for the loading screen
+loading_html = """
+<div class="loading-screen">
+    <div class="loading-spinner"></div>
+</div>
+"""
+
+# Inject custom CSS and HTML
+st.markdown(loading_css, unsafe_allow_html=True)
+st.markdown(loading_html, unsafe_allow_html=True)
+
+# Simulate a loading process
+time.sleep(3)  # Simulate a 3-second loading time
+
+# Remove the loading screen after the process is complete
+st.markdown("""
+<script>
+document.querySelector('.loading-screen').style.display = 'none';
+</script>
+""", unsafe_allow_html=True)
+
 try:
     # Load datasets
     @st.cache_data  # Cache the data loading
@@ -28,6 +82,8 @@ try:
         return real_estate_data, wine_quality_red_data, wine_quality_white_data
 
     real_estate_data, wine_quality_red_data, wine_quality_white_data = load_data()
+
+    # Add logo to the sidebar
     st.sidebar.image("epoka.png", width=200)  # Adjust the width as needed
 
     # Title and description
@@ -39,7 +95,7 @@ try:
     * White Wine Quality
     """)
 
-
+    # Sidebar content
     st.sidebar.header("Team Members")
     st.sidebar.markdown("""
     - **Youssef A. Zahran**
@@ -49,7 +105,7 @@ try:
 
     st.sidebar.header("Under Supervision of")
     st.sidebar.markdown("**Mohammad Ziyad Kagdi**")
-    
+
     st.sidebar.header("Deployed at")
     st.sidebar.markdown("[**Epoka University**](https://www.epoka.edu.al/)")  # Clickable link
 
