@@ -61,15 +61,16 @@ h1, h2, h3 {
 # Inject custom CSS
 st.markdown(epoka_theme_css, unsafe_allow_html=True)
 
-# Lottie animation loading screen
+# Lottie animation loading screen using iframe
 loading_html = """
-<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-<dotlottie-player src="https://lottie.host/8640de44-149e-4206-bd00-0961be00f934/N4TFbcZI8T.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+<iframe src="https://lottie.host/embed/8640de44-149e-4206-bd00-0961be00f934/N4TFbcZI8T.lottie" 
+        style="width: 100%; height: 100%; border: none;"></iframe>
 """
 
 # Create a placeholder for the loading screen
 loading_placeholder = st.empty()
-loading_placeholder.markdown(loading_html, unsafe_allow_html=True)
+with loading_placeholder:
+    st.components.v1.html(loading_html, height=300)  # Adjust height as needed
 
 # Simulate a loading process
 time.sleep(5)  # Simulate a 5-second loading time
