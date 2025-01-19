@@ -7,7 +7,12 @@ import numpy as np
 import time
 
 # Set page configuration
-st.set_page_config(page_title="Statistical Hypothesis Testing & Regression Analysis", layout="wide")
+st.set_page_config(
+    page_title="Statistical Hypothesis Testing & Regression Analysis",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 # Configure matplotlib for better visualization
 sns.set_style("whitegrid")  # Use Seaborn's styling
@@ -17,10 +22,41 @@ def clear_figure():
     plt.clf()
     plt.close('all')
 
-# Custom CSS for the creative loading screen
-loading_css = """
+# Custom CSS for Epoka's theme
+epoka_theme_css = """
 <style>
-/* Loading screen container */
+/* Main background and text colors */
+body {
+    background-color: #ffffff;  /* White background */
+    color: #003366;  /* Dark blue text */
+}
+
+/* Sidebar styling */
+.sidebar .sidebar-content {
+    background-color: #0073e6;  /* Epoka blue */
+    color: white;
+}
+
+/* Header styling */
+h1, h2, h3 {
+    color: #0073e6;  /* Epoka blue */
+}
+
+/* Button styling */
+.stButton>button {
+    background-color: #0073e6;  /* Epoka blue */
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.stButton>button:hover {
+    background-color: #005bb5;  /* Darker blue on hover */
+}
+
+/* Loading screen styling */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -35,7 +71,6 @@ loading_css = """
     z-index: 9999;
 }
 
-/* Loading text */
 .loading-text {
     font-size: 24px;
     font-weight: bold;
@@ -43,7 +78,6 @@ loading_css = """
     margin-bottom: 20px;
 }
 
-/* Progress bar container */
 .progress-bar-container {
     width: 50%;
     height: 20px;
@@ -52,7 +86,6 @@ loading_css = """
     overflow: hidden;
 }
 
-/* Progress bar */
 .progress-bar {
     height: 100%;
     width: 0;
@@ -79,7 +112,7 @@ loading_html = """
 """
 
 # Inject custom CSS and HTML
-st.markdown(loading_css, unsafe_allow_html=True)
+st.markdown(epoka_theme_css, unsafe_allow_html=True)
 
 # Create a placeholder for the loading screen
 loading_placeholder = st.empty()
