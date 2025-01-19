@@ -29,7 +29,7 @@ try:
     real_estate_data, wine_quality_red_data, wine_quality_white_data = load_data()
 
     # Title and description
-    st.title("Data Analysis Dashboard")
+    st.title("Statistical Hypothesis Testing & Regression Analysis")
     st.markdown("""
     This dashboard analyzes three datasets:
     * Real Estate Pricing
