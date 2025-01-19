@@ -1,0 +1,15 @@
+\begin{lstlisting}[caption=Real Estate Data Analysis Code]
+# Load and analyze real estate data
+def analyze_real_estate_data(data):
+    """Perform analysis on the real estate data."""
+    # Correlation analysis
+    correlation_matrix = data.corr()
+    print("Correlation matrix:\n", correlation_matrix)
+
+    # Linear regression: Predicting house price
+    X = data['X2 house age']
+    y = data['Y house price of unit area']
+    X = sm.add_constant(X)
+    model = sm.OLS(y, X).fit()
+    print(model.summary())
+\end{lstlisting} 

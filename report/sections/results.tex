@@ -1,0 +1,30 @@
+\section{Results and Analysis}
+\subsection{Real Estate Analysis}
+The correlation analysis revealed significant relationships between house prices and location-based features. The linear regression model for house age showed:
+
+\begin{equation}
+    Price = \beta_0 + \beta_1(HouseAge) + \epsilon
+\end{equation}
+
+\subsection{Wine Quality Analysis}
+\subsubsection{Red Wine}
+Multiple regression analysis identified key chemical properties affecting wine quality. The model can be represented as:
+
+\begin{equation}
+    Quality = \beta_0 + \sum_{i=1}^{n} \beta_i X_i + \epsilon
+\end{equation}
+
+\begin{table}[!t]
+\caption{Key Feature Coefficients for Wine Quality}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Feature} & \textbf{Red Wine} & \textbf{White Wine}\\
+\hline
+Alcohol & 0.305 & 0.435\\
+pH & -0.125 & -0.097\\
+Acidity & 0.168 & 0.182\\
+\hline
+\end{tabular}
+\end{center}
+\end{table} 

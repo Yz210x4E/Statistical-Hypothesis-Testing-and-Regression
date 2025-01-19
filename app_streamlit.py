@@ -4,110 +4,158 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import plotly.express as px
+import numpy as np
 
-# Load datasets
-real_estate_data = pd.read_csv('data/real-estate.csv')
-wine_quality_red_data = pd.read_csv('data/winequality-red.csv', sep=';')
-wine_quality_white_data = pd.read_csv('data/winequality-white.csv', sep=';')
+# Set page configuration
+st.set_page_config(page_title="Data Analysis Dashboard", layout="wide")
 
-# Title
-st.title("Data Analysis Dashboard")
+# Configure matplotlib for better visualization
+sns.set_style("whitegrid")  # Use Seaborn's styling
 
-# Correlation matrices
-st.header("Real Estate Data Correlation")
-real_estate_corr = real_estate_data.corr()
-sns.heatmap(real_estate_corr, annot=True, cmap='coolwarm', fmt=".2f")
-st.pyplot()
+# Function to reset matplotlib figure
+def clear_figure():
+    plt.clf()
+    plt.close('all')
 
-st.header("Red Wine Quality Data Correlation")
-wine_quality_red_corr = wine_quality_red_data.corr()
-sns.heatmap(wine_quality_red_corr, annot=True, cmap='coolwarm', fmt=".2f")
-st.pyplot()
+try:
+    # Load datasets
+    @st.cache_data  # Cache the data loading
+    def load_data():
+        real_estate_data = pd.read_csv('data/real-estate.csv')
+        wine_quality_red_data = pd.read_csv('data/winequality-red.csv', sep=';')
+        wine_quality_white_data = pd.read_csv('data/winequality-white.csv', sep=';')
+        return real_estate_data, wine_quality_red_data, wine_quality_white_data
 
-st.header("White Wine Quality Data Correlation")
-wine_quality_white_corr = wine_quality_white_data.corr()
-sns.heatmap(wine_quality_white_corr, annot=True, cmap='coolwarm', fmt=".2f")
-st.pyplot()
+    real_estate_data, wine_quality_red_data, wine_quality_white_data = load_data()
 
-# Interactive Visualization for Real Estate
-st.header("Interactive Visualization for Real Estate")
-feature = st.selectbox("Select Feature for Regression", ['X2 house age', 'X3 distance to the nearest MRT station', 'X4 number of convenience stores'])
-X = real_estate_data[feature]
-y = real_estate_data['Y house price of unit area']
-X = sm.add_constant(X)
-model = sm.OLS(y, X).fit()
+    # Title and description
+    st.title("Data Analysis Dashboard")
+    st.markdown("""
+    This dashboard analyzes three datasets:
+    * Real Estate Pricing
+    * Red Wine Quality
+    * White Wine Quality
+    """)
 
-# Display key regression statistics
-st.subheader("Regression Results")
-results_df = pd.DataFrame({
-    'Feature': model.params.index,
-    'Coefficient': model.params.values,
-    'P-Value': model.pvalues.values
-})
-st.write(results_df)
+    # Create three columns for correlation matrices
+    col1, col2, col3 = st.columns(3)
 
-# Plotting the regression results
-plt.figure(figsize=(10, 6))
-plt.scatter(real_estate_data[feature], y, label='Data Points')
-plt.plot(real_estate_data[feature], model.predict(X), color='red', label='Regression Line')
-plt.title(f'Real Estate Price Prediction based on {feature}')
-plt.xlabel(feature)
-plt.ylabel('Price per Unit Area')
-plt.legend()
-st.pyplot()
+    with col1:
+        st.header("Real Estate Correlations")
+        fig, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(real_estate_data.corr(), annot=True, cmap='coolwarm', fmt=".2f", ax=ax)
+        plt.title("Real Estate Correlation Matrix")
+        st.pyplot(fig)
+        clear_figure()
 
-# Multiple Regression for Red Wine Quality
-st.header("Multiple Regression for Red Wine Quality")
-X_red = wine_quality_red_data.drop(columns=['quality'])  # Independent variables
-y_red = wine_quality_red_data['quality']  # Dependent variable
-X_red = sm.add_constant(X_red)  # Adding a constant for the intercept
-model_red = sm.OLS(y_red, X_red).fit()
+    with col2:
+        st.header("Red Wine Correlations")
+        fig, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(wine_quality_red_data.corr(), annot=True, cmap='coolwarm', fmt=".2f", ax=ax)
+        plt.title("Red Wine Correlation Matrix")
+        st.pyplot(fig)
+        clear_figure()
 
-# Display key regression statistics for Red Wine
-st.subheader("Red Wine Quality Regression Results")
-results_red_df = pd.DataFrame({
-    'Feature': model_red.params.index,
-    'Coefficient': model_red.params.values,
-    'P-Value': model_red.pvalues.values
-})
-st.write(results_red_df)
+    with col3:
+        st.header("White Wine Correlations")
+        fig, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(wine_quality_white_data.corr(), annot=True, cmap='coolwarm', fmt=".2f", ax=ax)
+        plt.title("White Wine Correlation Matrix")
+        st.pyplot(fig)
+        clear_figure()
 
-# Interactive Visualization for Red Wine Quality
-st.subheader("Interactive Visualization for Red Wine Quality")
-feature_red = st.selectbox("Select Feature for Red Wine Quality Regression", X_red.columns[1:])
-plt.figure(figsize=(10, 6))
-plt.scatter(wine_quality_red_data[feature_red], y_red, label='Data Points')
-plt.plot(wine_quality_red_data[feature_red], model_red.predict(X_red), color='red', label='Regression Line')
-plt.title(f'Red Wine Quality Prediction based on {feature_red}')
-plt.xlabel(feature_red)
-plt.ylabel('Quality')
-plt.legend()
-st.pyplot()
+    # Real Estate Analysis
+    st.header("Real Estate Analysis")
+    feature = st.selectbox(
+        "Select Feature for Real Estate Analysis",
+        ['X2 house age', 'X3 distance to the nearest MRT station', 'X4 number of convenience stores']
+    )
 
-# Multiple Regression for White Wine Quality
-st.header("Multiple Regression for White Wine Quality")
-X_white = wine_quality_white_data.drop(columns=['quality'])  # Independent variables
-y_white = wine_quality_white_data['quality']  # Dependent variable
-X_white = sm.add_constant(X_white)  # Adding a constant for the intercept
-model_white = sm.OLS(y_white, X_white).fit()
+    # Perform regression
+    X = sm.add_constant(real_estate_data[feature])
+    y = real_estate_data['Y house price of unit area']
+    model = sm.OLS(y, X).fit()
 
-# Display key regression statistics for White Wine
-st.subheader("White Wine Quality Regression Results")
-results_white_df = pd.DataFrame({
-    'Feature': model_white.params.index,
-    'Coefficient': model_white.params.values,
-    'P-Value': model_white.pvalues.values
-})
-st.write(results_white_df)
+    # Display regression results
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("Regression Statistics")
+        results_df = pd.DataFrame({
+            'Metric': ['R-squared', 'Adj. R-squared', 'F-statistic', 'P-value (F-stat)'],
+            'Value': [model.rsquared, model.rsquared_adj, model.fvalue, model.f_pvalue]
+        })
+        st.table(results_df)
 
-# Interactive Visualization for White Wine Quality
-st.subheader("Interactive Visualization for White Wine Quality")
-feature_white = st.selectbox("Select Feature for White Wine Quality Regression", X_white.columns[1:])
-plt.figure(figsize=(10, 6))
-plt.scatter(wine_quality_white_data[feature_white], y_white, label='Data Points')
-plt.plot(wine_quality_white_data[feature_white], model_white.predict(X_white), color='red', label='Regression Line')
-plt.title(f'White Wine Quality Prediction based on {feature_white}')
-plt.xlabel(feature_white)
-plt.ylabel('Quality')
-plt.legend()
-st.pyplot() 
+    with col2:
+        st.subheader("Coefficient Analysis")
+        coef_df = pd.DataFrame({
+            'Feature': ['Intercept', feature],
+            'Coefficient': model.params,
+            'P-Value': model.pvalues
+        })
+        st.table(coef_df)
+
+    # Plot regression
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.scatter(real_estate_data[feature], y, alpha=0.5)
+    ax.plot(real_estate_data[feature], model.predict(X), color='red', linewidth=2)
+    ax.set_xlabel(feature)
+    ax.set_ylabel('House Price per Unit Area')
+    ax.set_title(f'Real Estate Price vs {feature}')
+    st.pyplot(fig)
+    clear_figure()
+
+    # Wine Quality Analysis
+    st.header("Wine Quality Analysis")
+    wine_type = st.radio("Select Wine Type", ["Red Wine", "White Wine"])
+
+    if wine_type == "Red Wine":
+        wine_data = wine_quality_red_data
+    else:
+        wine_data = wine_quality_white_data
+
+    # Feature selection for wine analysis
+    wine_feature = st.selectbox(
+        "Select Feature for Wine Analysis",
+        wine_data.drop('quality', axis=1).columns
+    )
+
+    # Perform wine regression
+    X_wine = sm.add_constant(wine_data[wine_feature])
+    y_wine = wine_data['quality']
+    wine_model = sm.OLS(y_wine, X_wine).fit()
+
+    # Display wine regression results
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("Wine Regression Statistics")
+        wine_results_df = pd.DataFrame({
+            'Metric': ['R-squared', 'Adj. R-squared', 'F-statistic', 'P-value (F-stat)'],
+            'Value': [wine_model.rsquared, wine_model.rsquared_adj, wine_model.fvalue, wine_model.f_pvalue]
+        })
+        st.table(wine_results_df)
+
+    with col2:
+        st.subheader("Wine Coefficient Analysis")
+        wine_coef_df = pd.DataFrame({
+            'Feature': ['Intercept', wine_feature],
+            'Coefficient': wine_model.params,
+            'P-Value': wine_model.pvalues
+        })
+        st.table(wine_coef_df)
+
+    # Plot wine regression
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.scatter(wine_data[wine_feature], y_wine, alpha=0.5)
+    ax.plot(wine_data[wine_feature], wine_model.predict(X_wine), color='red', linewidth=2)
+    ax.set_xlabel(wine_feature)
+    ax.set_ylabel('Wine Quality')
+    ax.set_title(f'{wine_type} Quality vs {wine_feature}')
+    st.pyplot(fig)
+    clear_figure()
+
+except Exception as e:
+    st.error(f"An error occurred: {str(e)}")
+    st.error("Please make sure all required data files are present in the correct location.")
