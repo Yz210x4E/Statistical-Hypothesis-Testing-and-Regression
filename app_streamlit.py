@@ -17,7 +17,7 @@ def clear_figure():
     plt.clf()
     plt.close('all')
 
-# Custom CSS for the loading screen
+# Custom CSS for the creative loading screen
 loading_css = """
 <style>
 /* Loading screen container */
@@ -31,22 +31,39 @@ loading_css = """
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 9999;
 }
 
-/* Loading spinner */
-.loading-spinner {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #0073e6;  /* Epoka blue */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
+/* Loading text */
+.loading-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0073e6;  /* Epoka blue */
+    margin-bottom: 20px;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* Progress bar container */
+.progress-bar-container {
+    width: 50%;
+    height: 20px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Progress bar */
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #0073e6;  /* Epoka blue */
+    animation: progress 2s linear infinite;
+}
+
+@keyframes progress {
+    0% { width: 0; }
+    50% { width: 50%; }
+    100% { width: 100%; }
 }
 </style>
 """
@@ -54,23 +71,25 @@ loading_css = """
 # HTML for the loading screen
 loading_html = """
 <div class="loading-screen">
-    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading Data...</div>
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
 </div>
 """
 
 # Inject custom CSS and HTML
 st.markdown(loading_css, unsafe_allow_html=True)
-st.markdown(loading_html, unsafe_allow_html=True)
+
+# Create a placeholder for the loading screen
+loading_placeholder = st.empty()
+loading_placeholder.markdown(loading_html, unsafe_allow_html=True)
 
 # Simulate a loading process
 time.sleep(3)  # Simulate a 3-second loading time
 
 # Remove the loading screen after the process is complete
-st.markdown("""
-<script>
-document.querySelector('.loading-screen').style.display = 'none';
-</script>
-""", unsafe_allow_html=True)
+loading_placeholder.empty()
 
 try:
     # Load datasets
