@@ -37,12 +37,7 @@ try:
     * White Wine Quality
     """)
 
-    st.sidebar.header("Contents")
-st.sidebar.markdown("""
-- [Home](#home)
-- [Real Estate Analysis](#real-estate-analysis)
-- [Wine Quality Analysis](#wine-quality-analysis)
-""")
+
     st.sidebar.header("Team Members")
     st.sidebar.markdown("""
     - **Youssef A. Zahran**
