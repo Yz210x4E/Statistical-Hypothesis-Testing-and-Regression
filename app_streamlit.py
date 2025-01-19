@@ -27,6 +27,7 @@ epoka_theme_css = """
 <style>
 /* Main background and text colors */
 body {
+    font-family: 'Monospace', monospace;
     background-color: #ffffff;  /* White background */
     color: #003366;  /* Dark blue text */
 }
@@ -111,7 +112,7 @@ try:
 
     st.sidebar.header("Under Supervision of")
     st.sidebar.markdown("**Prof. Mohammad Ziyad Kagdi**")
-
+    st.sidebar.header("BINF III")
     st.sidebar.header("Deployed at")
     st.sidebar.markdown("[**Epoka University**](https://www.epoka.edu.al/)")  # Clickable link
 
