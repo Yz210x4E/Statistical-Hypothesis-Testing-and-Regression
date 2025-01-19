@@ -36,6 +36,12 @@ try:
     * Red Wine Quality
     * White Wine Quality
     """)
+    st.sidebar.header("Team Members")
+    st.sidebar.markdown("""
+    - **Youssef A. Zahran**
+    - **Dionis Leka**
+    - ****
+    """)
 
     # Create three columns for correlation matrices
     col1, col2, col3 = st.columns(3)
