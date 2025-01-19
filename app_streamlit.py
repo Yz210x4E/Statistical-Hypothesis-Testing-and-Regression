@@ -51,7 +51,6 @@ try:
     
     st.sidebar.header("Deployed at")
     st.sidebar.markdown("[**Epoka University**](https://www.epoka.edu.al/)")  # Clickable link
-    st.sidebar.image("https://www.epoka.edu.al/wp-content/uploads/2022/09/Epoka-University-Logo.png", width=150)  # Add university logo
 
     # Create three columns for correlation matrices
     col1, col2, col3 = st.columns(3)
