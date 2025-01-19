@@ -25,11 +25,9 @@ def clear_figure():
 # Custom CSS for Epoka's theme
 epoka_theme_css = """
 <style>
-/* Main background and text colors */
-body {
-    font-family: 'Monospace', monospace;
-    background-color: #ffffff;  /* White background */
-    color: #003366;  /* Dark blue text */
+/* Set Monospace as the default font */
+* {
+    font-family: 'Courier New', monospace !important;
 }
 
 /* Sidebar styling */
