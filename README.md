@@ -1,155 +1,133 @@
-Statistical Hypothesis Testing and Regression Analysis Dashboard
-Epoka University Logo
+# Statistical Hypothesis Testing and Regression Analysis Dashboard
 
-This project is a Streamlit-based web application that performs statistical hypothesis testing and regression analysis on three datasets: Real Estate Pricing, Red Wine Quality, and White Wine Quality. The app provides interactive visualizations, correlation matrices, and regression analysis to help users explore and understand the relationships within the data.
+This interactive web application provides powerful tools for statistical analysis and visualization of three key datasets: Real Estate Pricing, Red Wine Quality, and White Wine Quality. Built with Streamlit, the dashboard enables users to perform in-depth statistical hypothesis testing and regression analysis through an intuitive interface.
 
-🔗 Live App: Statistical Hypothesis Testing and Regression Analysis Dashboard
+📊 **[Try the Live Dashboard](https://statistical-hypothesis-testing-and-regrysis-jkwgpk9btxfeqw4a59.streamlit.app/)**
 
-Features
-1. Real Estate Pricing Analysis
-Correlation Matrix: Visualize the correlation between features in the real estate dataset.
+## Project Overview
 
-Regression Analysis: Perform linear regression to analyze the relationship between house prices and selected features (e.g., house age, distance to MRT station, number of convenience stores).
+The dashboard serves as a comprehensive analytical tool that helps users understand complex relationships within datasets through:
 
-Interactive Plots: Scatter plots with regression lines to visualize the relationship between features and house prices.
+- Statistical hypothesis testing to validate relationships between variables
+- Interactive regression analysis with customizable parameters
+- Dynamic visualization of correlations and relationships
+- User-friendly interface with intuitive navigation
 
-2. Red and White Wine Quality Analysis
-Correlation Matrix: Explore the correlation between features in the red and white wine datasets.
+## Ways to Access
 
-Regression Analysis: Perform linear regression to analyze the relationship between wine quality and selected features (e.g., alcohol content, acidity, pH).
+You can use this dashboard in two ways:
 
-Interactive Plots: Scatter plots with regression lines to visualize the relationship between features and wine quality.
+1. **Live Web Application**: Access the deployed version instantly through your browser:
+   - Visit [https://statistical-hypothesis-testing-and-regrysis-jkwgpk9btxfeqw4a59.streamlit.app/](https://statistical-hypothesis-testing-and-regrysis-jkwgpk9btxfeqw4a59.streamlit.app/)
+   - No installation required
+   - Start analyzing data immediately
 
-3. User-Friendly Interface
-Sidebar Navigation: Easily navigate through different sections of the app using the sidebar.
+2. **Local Installation**: Run the application on your local machine for development or offline use by following the installation instructions below.
 
-Interactive Widgets: Use dropdowns, sliders, and radio buttons to customize the analysis.
+## Features
 
-Team Information: Learn about the team members and the institution behind the project.
+### Real Estate Analysis
+The real estate analysis module helps users understand property pricing factors through:
 
-Datasets
-The app uses the following datasets:
+- Correlation matrices visualizing relationships between all features in the dataset
+- Linear regression analysis examining how factors like house age, MRT station proximity, and convenience store density affect prices
+- Interactive scatter plots with regression lines for visual analysis of feature relationships
+- Detailed statistical outputs including p-values, R-squared values, and confidence intervals
 
-Real Estate Pricing Dataset:
+### Wine Quality Analysis
+Both red and white wine datasets can be analyzed to understand quality determinants:
 
-Contains information about house prices and features such as house age, distance to the nearest MRT station, and number of convenience stores.
+- Comprehensive correlation analysis of wine characteristics
+- Regression modeling to identify key quality factors like alcohol content, acidity, and pH
+- Interactive visualizations showing relationships between chemical properties and wine quality
+- Comparative analysis between red and white wine characteristics
 
-Source: UCI Machine Learning Repository.
+### User Interface
+The application features a carefully designed interface for optimal user experience:
 
-Red Wine Quality Dataset:
+- Intuitive sidebar navigation for seamless movement between analysis modules
+- Interactive widgets allowing users to customize their analysis parameters
+- Clear visualization controls for adjusting plot parameters
+- Detailed explanations of statistical concepts and interpretations
 
-Contains physicochemical properties of red wine and their corresponding quality ratings.
+## Installation
 
-Source: UCI Machine Learning Repository.
-
-White Wine Quality Dataset:
-
-Contains physicochemical properties of white wine and their corresponding quality ratings.
-
-Source: UCI Machine Learning Repository.
-
-How to Use the App
-Navigate the App:
-
-Use the sidebar to switch between sections: Home, Real Estate Analysis, and Wine Quality Analysis.
-
-Click on the links in the sidebar to jump to specific sections of the app.
-
-Real Estate Analysis:
-
-Select a feature (e.g., house age, distance to MRT station) to analyze its relationship with house prices.
-
-View the regression statistics and coefficient analysis.
-
-Explore the scatter plot with the regression line.
-
-Wine Quality Analysis:
-
-Choose between red and white wine datasets.
-
-Select a feature (e.g., alcohol content, acidity) to analyze its relationship with wine quality.
-
-View the regression statistics and coefficient analysis.
-
-Explore the scatter plot with the regression line.
-
-Installation and Setup
-To run this app locally, follow these steps:
-
-1. Clone the Repository
-bash
-Copy
+1. Clone the repository:
+```bash
 git clone https://github.com/Yz210x4E/Statistical-Hypothesis-Testing-and-Regrysis.git
 cd Statistical-Hypothesis-Testing-and-Regrysis
-2. Install Dependencies
-Ensure you have Python 3.7 or higher installed. Then, install the required libraries:
+```
 
-bash
-Copy
+2. Create and activate a virtual environment (recommended):
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install required dependencies:
+```bash
 pip install -r requirements.txt
-3. Run the App
-Start the Streamlit app:
+```
 
-bash
-Copy
+4. Launch the application:
+```bash
 streamlit run app_streamlit.py
-4. Access the App
-Open your browser and go to http://localhost:8501 to view the app.
+```
 
-Technologies Used
-Python: Primary programming language.
+## Dataset Information
 
-Streamlit: Framework for building and deploying the web app.
+The application analyzes three distinct datasets from the UCI Machine Learning Repository:
 
-Pandas: Data manipulation and analysis.
+1. Real Estate Pricing Dataset
+   - Features include house age, distance to MRT stations, convenience store count
+   - Target variable: House price per unit area
+   - Used for property value prediction and feature importance analysis
 
-Seaborn and Matplotlib: Data visualization.
+2. Red Wine Quality Dataset
+   - Contains physicochemical properties of red wines
+   - Features include alcohol content, acidity levels, pH, and other chemical properties
+   - Target variable: Wine quality score
 
-StatsModels: Statistical modeling and regression analysis.
+3. White Wine Quality Dataset
+   - Similar structure to red wine dataset but for white wines
+   - Enables comparative analysis between red and white wine characteristics
+   - Facilitates understanding of quality determinants across wine types
 
-Plotly: Interactive visualizations.
+## Technologies
 
-NumPy: Numerical computations.
+The project leverages several powerful Python libraries:
 
-Team Members
-This project was developed by:
+- Streamlit: Powers the web interface and interactive components
+- Pandas: Handles data manipulation and analysis
+- StatsModels: Provides statistical modeling capabilities
+- Seaborn & Matplotlib: Generate static visualizations
+- Plotly: Creates interactive plots
+- NumPy: Supports numerical computations
 
-John Doe (Data Scientist)
+## Contributing
 
-Jane Smith (Software Engineer)
+We welcome contributions to improve the dashboard. To contribute:
 
-Alice Johnson (Product Manager)
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Deployed At
-This app is proudly deployed at Epoka University.
+## Contact
 
-Contributing
-Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+For questions, feedback, or collaboration opportunities:
 
-Fork the repository.
+- Youssef A. Zahran - youssef.zzzz802@gmail.com
+- Dionis Leka - dleka22@epoka.edu.al
+- Xhesika Gjikola - xgjikola21@epoka.edu.al
 
-Create a new branch for your feature or bugfix.
+## Acknowledgments
 
-Commit your changes.
+- Epoka University for providing institutional support
+- UCI Machine Learning Repository for the datasets
+- The Streamlit team for their excellent framework
 
-Submit a pull request.
+---
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Acknowledgments
-Datasets sourced from the UCI Machine Learning Repository.
-
-Special thanks to Epoka University for supporting this project.
-
-Contact
-For questions or feedback, please contact:
-
-John Doe: john.doe@example.com
-
-Jane Smith: jane.smith@example.com
-
-Alice Johnson: alice.johnson@example.com
-
-Thank you for using the Statistical Hypothesis Testing and Regression Analysis Dashboard! We hope you find it useful for your data analysis needs. 🚀
-
+Developed with ❤️ at Epoka University
