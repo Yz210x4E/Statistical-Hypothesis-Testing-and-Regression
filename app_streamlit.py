@@ -28,7 +28,7 @@ try:
         return real_estate_data, wine_quality_red_data, wine_quality_white_data
 
     real_estate_data, wine_quality_red_data, wine_quality_white_data = load_data()
-    st.sidebar.image("epoka.png", width=150)  # Adjust the width as needed
+    st.sidebar.image("epoka.png", width=200)  # Adjust the width as needed
 
     # Title and description
     st.title("Statistical Hypothesis Testing & Regression Analysis")
