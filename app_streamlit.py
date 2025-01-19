@@ -123,7 +123,7 @@ try:
     """)
 
     st.sidebar.header("Under Supervision of")
-    st.sidebar.markdown("**Mohammad Ziyad Kagdi**")
+    st.sidebar.markdown("**Prof. Mohammad Ziyad Kagdi**")
 
     st.sidebar.header("Deployed at")
     st.sidebar.markdown("[**Epoka University**](https://www.epoka.edu.al/)")  # Clickable link
