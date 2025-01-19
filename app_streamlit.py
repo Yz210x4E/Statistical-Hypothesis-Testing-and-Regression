@@ -42,7 +42,7 @@ try:
     st.sidebar.markdown("""
     - **Youssef A. Zahran**
     - **Dionis Leka**
-    - ****
+    - **Xhesika Gjikola**
     """)
 
     # Create three columns for correlation matrices
