@@ -13,8 +13,9 @@ def analyze_real_estate_data(data):
     correlation_matrix = data.corr()
     print("Correlation matrix:\n", correlation_matrix)
 
-    # Linear regression: Predicting house price based on house age
-    X = data['X2 house age']  # Independent variable
+    # Multiple linear regression: Predicting house price based on all features
+    X = data[['X1 transaction date', 'X2 house age', 'X3 distance to the nearest MRT station', 
+              'X4 number of convenience stores', 'X5 latitude', 'X6 longitude']]  # Independent variables
     y = data['Y house price of unit area']  # Dependent variable
     X = sm.add_constant(X)  # Adding a constant for the intercept
     model = sm.OLS(y, X).fit()
@@ -23,4 +24,4 @@ def analyze_real_estate_data(data):
 if __name__ == "__main__":
     file_path = 'data/real-estate.csv'
     real_estate_data = load_real_estate_data(file_path)
-    analyze_real_estate_data(real_estate_data) 
+    analyze_real_estate_data(real_estate_data)
