@@ -9,7 +9,7 @@ import time
 # Set page configuration
 st.set_page_config(
     page_title="Statistical Hypothesis Testing & Regression Analysis",
-    page_icon="📊",
+    page_icon="📈📉📊",
     layout="wide",
     initial_sidebar_state="expanded",
 )
