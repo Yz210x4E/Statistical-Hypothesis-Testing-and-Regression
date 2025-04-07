@@ -63,7 +63,7 @@ st.markdown(epoka_theme_css, unsafe_allow_html=True)
 # Lottie animation loading screen using iframe
 loading_html = """
 <iframe src="https://lottie.host/embed/8640de44-149e-4206-bd00-0961be00f934/N4TFbcZI8T.lottie" 
-        style="width: 200%; height: 200%; border: none;"></iframe>
+        style="width: 150%; height: 200%; border: none;"></iframe>
 """
 
 # Create a placeholder for the loading screen
