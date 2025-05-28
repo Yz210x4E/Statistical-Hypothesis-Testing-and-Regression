@@ -118,9 +118,9 @@ We welcome contributions to improve the dashboard. To contribute:
 
 For questions, feedback, or collaboration opportunities:
 
-- Youssef A. Zahran - youssef.zzzz802@gmail.com
-- Dionis Leka - dleka22@epoka.edu.al
-- Xhesika Gjikola - xgjikola21@epoka.edu.al
+- Yz210x4E
+- Dionis Leka 
+- Xhesika Gjikola
 
 ## Acknowledgments
 
